@@ -1,0 +1,253 @@
+{
+  "best_model": "Logistic Regression",
+  "ranking_rule": "phishing recall, then macro F1, then accuracy",
+  "dataset_rows": 468,
+  "train_size": 374,
+  "test_size": 94,
+  "class_counts": {
+    "0": 164,
+    "1": 132,
+    "2": 172
+  },
+  "comparison": [
+    {
+      "model": "Logistic Regression",
+      "cv_accuracy": 0.9412252252252251,
+      "cv_f1_macro": 0.938088240366428,
+      "cv_f1_weighted": 0.9413510628001431,
+      "test_accuracy": 0.9468085106382979,
+      "test_macro_f1": 0.9432419432419432,
+      "test_weighted_f1": 0.9469927235884683,
+      "test_phishing_recall": 1.0,
+      "test_phishing_precision": 1.0,
+      "per_class_recall": {
+        "Safe": 0.8787878787878788,
+        "Suspicious": 0.9615384615384616,
+        "Phishing": 1.0
+      },
+      "per_class_precision": {
+        "Safe": 0.9666666666666667,
+        "Suspicious": 0.8620689655172413,
+        "Phishing": 1.0
+      },
+      "per_class_f1": {
+        "Safe": 0.9206349206349206,
+        "Suspicious": 0.9090909090909091,
+        "Phishing": 1.0
+      },
+      "report": "              precision    recall  f1-score   support\n\n        Safe       0.97      0.88      0.92        33\n  Suspicious       0.86      0.96      0.91        26\n    Phishing       1.00      1.00      1.00        35\n\n    accuracy                           0.95        94\n   macro avg       0.94      0.95      0.94        94\nweighted avg       0.95      0.95      0.95        94\n"
+    },
+    {
+      "model": "XGBoost",
+      "cv_accuracy": 0.9626306306306306,
+      "cv_f1_macro": 0.9608888572710566,
+      "cv_f1_weighted": 0.962761359402687,
+      "test_accuracy": 0.9468085106382979,
+      "test_macro_f1": 0.9432419432419432,
+      "test_weighted_f1": 0.9469927235884683,
+      "test_phishing_recall": 1.0,
+      "test_phishing_precision": 1.0,
+      "per_class_recall": {
+        "Safe": 0.8787878787878788,
+        "Suspicious": 0.9615384615384616,
+        "Phishing": 1.0
+      },
+      "per_class_precision": {
+        "Safe": 0.9666666666666667,
+        "Suspicious": 0.8620689655172413,
+        "Phishing": 1.0
+      },
+      "per_class_f1": {
+        "Safe": 0.9206349206349206,
+        "Suspicious": 0.9090909090909091,
+        "Phishing": 1.0
+      },
+      "report": "              precision    recall  f1-score   support\n\n        Safe       0.97      0.88      0.92        33\n  Suspicious       0.86      0.96      0.91        26\n    Phishing       1.00      1.00      1.00        35\n\n    accuracy                           0.95        94\n   macro avg       0.94      0.95      0.94        94\nweighted avg       0.95      0.95      0.95        94\n"
+    },
+    {
+      "model": "Random Forest",
+      "cv_accuracy": 0.9544864864864865,
+      "cv_f1_macro": 0.9519950168260418,
+      "cv_f1_weighted": 0.9545612954851513,
+      "test_accuracy": 0.9361702127659575,
+      "test_macro_f1": 0.9318131008271853,
+      "test_weighted_f1": 0.9361606994211129,
+      "test_phishing_recall": 1.0,
+      "test_phishing_precision": 0.9722222222222222,
+      "per_class_recall": {
+        "Safe": 0.8787878787878788,
+        "Suspicious": 0.9230769230769231,
+        "Phishing": 1.0
+      },
+      "per_class_precision": {
+        "Safe": 0.9666666666666667,
+        "Suspicious": 0.8571428571428571,
+        "Phishing": 0.9722222222222222
+      },
+      "per_class_f1": {
+        "Safe": 0.9206349206349206,
+        "Suspicious": 0.8888888888888888,
+        "Phishing": 0.9859154929577465
+      },
+      "report": "              precision    recall  f1-score   support\n\n        Safe       0.97      0.88      0.92        33\n  Suspicious       0.86      0.92      0.89        26\n    Phishing       0.97      1.00      0.99        35\n\n    accuracy                           0.94        94\n   macro avg       0.93      0.93      0.93        94\nweighted avg       0.94      0.94      0.94        94\n"
+    },
+    {
+      "model": "KNN",
+      "cv_accuracy": 0.9679639639639641,
+      "cv_f1_macro": 0.9669688791881299,
+      "cv_f1_weighted": 0.9683015945590542,
+      "test_accuracy": 0.9361702127659575,
+      "test_macro_f1": 0.9318131008271853,
+      "test_weighted_f1": 0.9361606994211129,
+      "test_phishing_recall": 1.0,
+      "test_phishing_precision": 0.9722222222222222,
+      "per_class_recall": {
+        "Safe": 0.8787878787878788,
+        "Suspicious": 0.9230769230769231,
+        "Phishing": 1.0
+      },
+      "per_class_precision": {
+        "Safe": 0.9666666666666667,
+        "Suspicious": 0.8571428571428571,
+        "Phishing": 0.9722222222222222
+      },
+      "per_class_f1": {
+        "Safe": 0.9206349206349206,
+        "Suspicious": 0.8888888888888888,
+        "Phishing": 0.9859154929577465
+      },
+      "report": "              precision    recall  f1-score   support\n\n        Safe       0.97      0.88      0.92        33\n  Suspicious       0.86      0.92      0.89        26\n    Phishing       0.97      1.00      0.99        35\n\n    accuracy                           0.94        94\n   macro avg       0.93      0.93      0.93        94\nweighted avg       0.94      0.94      0.94        94\n"
+    },
+    {
+      "model": "Decision Tree",
+      "cv_accuracy": 0.9170450450450451,
+      "cv_f1_macro": 0.9156783496209874,
+      "cv_f1_weighted": 0.9182019739050794,
+      "test_accuracy": 0.8723404255319149,
+      "test_macro_f1": 0.8647042736742659,
+      "test_weighted_f1": 0.868391430540693,
+      "test_phishing_recall": 1.0,
+      "test_phishing_precision": 0.9210526315789473,
+      "per_class_recall": {
+        "Safe": 0.696969696969697,
+        "Suspicious": 0.9230769230769231,
+        "Phishing": 1.0
+      },
+      "per_class_precision": {
+        "Safe": 0.92,
+        "Suspicious": 0.7741935483870968,
+        "Phishing": 0.9210526315789473
+      },
+      "per_class_f1": {
+        "Safe": 0.7931034482758621,
+        "Suspicious": 0.8421052631578947,
+        "Phishing": 0.958904109589041
+      },
+      "report": "              precision    recall  f1-score   support\n\n        Safe       0.92      0.70      0.79        33\n  Suspicious       0.77      0.92      0.84        26\n    Phishing       0.92      1.00      0.96        35\n\n    accuracy                           0.87        94\n   macro avg       0.87      0.87      0.86        94\nweighted avg       0.88      0.87      0.87        94\n"
+    },
+    {
+      "model": "SVM",
+      "cv_accuracy": 0.8770450450450451,
+      "cv_f1_macro": 0.8715665333470483,
+      "cv_f1_weighted": 0.8778311939073783,
+      "test_accuracy": 0.9680851063829787,
+      "test_macro_f1": 0.9663530295249613,
+      "test_weighted_f1": 0.9681526894537631,
+      "test_phishing_recall": 0.9428571428571428,
+      "test_phishing_precision": 1.0,
+      "per_class_recall": {
+        "Safe": 1.0,
+        "Suspicious": 0.9615384615384616,
+        "Phishing": 0.9428571428571428
+      },
+      "per_class_precision": {
+        "Safe": 0.9705882352941176,
+        "Suspicious": 0.9259259259259259,
+        "Phishing": 1.0
+      },
+      "per_class_f1": {
+        "Safe": 0.9850746268656716,
+        "Suspicious": 0.9433962264150944,
+        "Phishing": 0.9705882352941176
+      },
+      "report": "              precision    recall  f1-score   support\n\n        Safe       0.97      1.00      0.99        33\n  Suspicious       0.93      0.96      0.94        26\n    Phishing       1.00      0.94      0.97        35\n\n    accuracy                           0.97        94\n   macro avg       0.97      0.97      0.97        94\nweighted avg       0.97      0.97      0.97        94\n"
+    },
+    {
+      "model": "Naive Bayes",
+      "cv_accuracy": 0.8529009009009009,
+      "cv_f1_macro": 0.8469172536817189,
+      "cv_f1_weighted": 0.8519694818045481,
+      "test_accuracy": 0.8617021276595744,
+      "test_macro_f1": 0.8572762895974425,
+      "test_weighted_f1": 0.8606489788419466,
+      "test_phishing_recall": 0.6571428571428571,
+      "test_phishing_precision": 1.0,
+      "per_class_recall": {
+        "Safe": 1.0,
+        "Suspicious": 0.9615384615384616,
+        "Phishing": 0.6571428571428571
+      },
+      "per_class_precision": {
+        "Safe": 0.9705882352941176,
+        "Suspicious": 0.6756756756756757,
+        "Phishing": 1.0
+      },
+      "per_class_f1": {
+        "Safe": 0.9850746268656716,
+        "Suspicious": 0.7936507936507936,
+        "Phishing": 0.7931034482758621
+      },
+      "report": "              precision    recall  f1-score   support\n\n        Safe       0.97      1.00      0.99        33\n  Suspicious       0.68      0.96      0.79        26\n    Phishing       1.00      0.66      0.79        35\n\n    accuracy                           0.86        94\n   macro avg       0.88      0.87      0.86        94\nweighted avg       0.90      0.86      0.86        94\n"
+    }
+  ],
+  "importances": [
+    {
+      "feature": "suspicious_tld",
+      "importance": 1.1566509665046005
+    },
+    {
+      "feature": "num_hyphens",
+      "importance": 0.9918893724295629
+    },
+    {
+      "feature": "is_shortener",
+      "importance": 0.8110448112046363
+    },
+    {
+      "feature": "num_digits_url",
+      "importance": 0.8037039681294734
+    },
+    {
+      "feature": "credential_cues",
+      "importance": 0.7445487347913212
+    },
+    {
+      "feature": "brand_impersonation",
+      "importance": 0.717071019895284
+    },
+    {
+      "feature": "num_words",
+      "importance": 0.6203027262762527
+    },
+    {
+      "feature": "money_cues",
+      "importance": 0.5978509291847699
+    },
+    {
+      "feature": "host_length",
+      "importance": 0.5833821683993731
+    },
+    {
+      "feature": "url_length",
+      "importance": 0.5795802454225628
+    },
+    {
+      "feature": "has_https",
+      "importance": 0.5452250389458048
+    },
+    {
+      "feature": "query_length",
+      "importance": 0.42072216211403896
+    }
+  ]
+}

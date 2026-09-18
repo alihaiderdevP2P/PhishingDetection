@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Verdict · PhishGuard{% endblock %}
+{% block content %}
+<section class="result-layout">
+  <article class="verdict-panel verdict-{{ result.verdict | lower }}">
+    <p class="kicker">Model output · {{ result.model_name }} · {{ result.channel }}</p>
+    <h1>{{ result.verdict }}</h1>
+    <p class="muted">Estimated class probabilities (sum to 1). This is not a guarantee.</p>
+    <ul class="prob-bars">
+      {% for name, value in result.probabilities.items() %}
+        <li>
+          <div class="contrib-meta">
+            <strong>{{ name }}</strong>
+            <span>{{ '%.0f'|format(value * 100) }}%</span>
+          </div>
+          <div class="contrib-bar">
+            <span style="width: {{ (value * 100)|round(1) }}%;" class="p-{{ name | lower }}"></span>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </article>
+
+  <article>
+    <h2>Signals the model weighted</h2>
+    <p class="muted">Local attributions from the fitted model, not a hand-written rule list.</p>
+    {% if result.contributions %}
+      <ul class="contrib-list">
+        {% for item in result.contributions %}
+          <li>
+            <div class="contrib-meta">
+              <strong>{{ item.label }}</strong>
+              <span>{{ item.direction }}</span>
+            </div>
+            <div class="contrib-bar">
+              <span style="width: {{ ([item.contribution|abs * 80, 100]|min)|round(1) }}%;" class="{{ 'up' if item.contribution > 0 else 'down' }}"></span>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </article>
+</section>
+
+<section class="entered-values">
+  <h2>Submitted content</h2>
+  {% if text %}<p>{{ text }}</p>{% endif %}
+  {% if url %}<p class="mono">{{ url }}</p>{% endif %}
+  <a class="ghost" href="{{ url_for('index') }}">Scan another item</a>
+</section>
+{% endblock %}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}PhishGuard{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="shell">
+    <header class="site-header">
+      <a class="brand" href="{{ url_for('index') }}">
+        <span class="shield" aria-hidden="true"></span>
+        <span>
+          <strong>PhishGuard</strong>
+          <small>URL + NLP phishing detector · academic prototype</small>
+        </span>
+      </a>
+      <nav>
+        <a href="{{ url_for('index') }}">Scan</a>
+        <a href="{{ url_for('models') }}">Model comparison</a>
+        <a href="{{ url_for('about') }}">About</a>
+      </nav>
+    </header>
+
+    <p class="disclaimer">
+      This tool estimates a class from a research dataset. It is not a guarantee that a message is safe,
+      and it must not be the only control you rely on for real security decisions.
+    </p>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">{{ messages[0] }}</div>
+      {% endif %}
+    {% endwith %}
+
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+      Final Year Project · Machine Learning-Based Intelligent Phishing and Scam Detection System
+    </footer>
+  </div>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Models · PhishGuard{% endblock %}
+{% block content %}
+<p class="kicker">Held-out test set</p>
+<h1>Model comparison</h1>
+<p class="muted">Ranking rule: phishing recall, then macro F1, then accuracy. Selected: <strong>{{ metrics.best_model }}</strong>.</p>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Accuracy</th>
+        <th>Macro F1</th>
+        <th>Phishing recall</th>
+        <th>Phishing precision</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in metrics.comparison %}
+        <tr class="{{ 'is-best' if row.model == metrics.best_model }}">
+          <td>{{ row.model }}</td>
+          <td>{{ '%.3f'|format(row.test_accuracy) }}</td>
+          <td>{{ '%.3f'|format(row.test_macro_f1) }}</td>
+          <td>{{ '%.3f'|format(row.test_phishing_recall) }}</td>
+          <td>{{ '%.3f'|format(row.test_phishing_precision) }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<section class="charts">
+  <article>
+    <h2>Phishing recall</h2>
+    <div class="bar-chart">
+      {% for row in metrics.comparison %}
+        <div>
+          <span>{{ row.model }}</span>
+          <i style="width: {{ (row.test_phishing_recall * 100)|round(1) }}%;"></i>
+          <span>{{ '%.2f'|format(row.test_phishing_recall) }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </article>
+  <article>
+    <h2>Top features</h2>
+    <div class="bar-chart">
+      {% for item in metrics.importances[:8] %}
+        <div>
+          <span>{{ item.feature }}</span>
+          <i style="width: {{ ([item.importance * 400, 100]|min)|round(1) }}%;"></i>
+          <span></span>
+        </div>
+      {% endfor %}
+    </div>
+  </article>
+</section>
+{% endblock %}

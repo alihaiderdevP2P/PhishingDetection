@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}About · PhishGuard{% endblock %}
+{% block content %}
+<article class="prose">
+  <p class="kicker">Project scope</p>
+  <h1>An academic prototype, not a security product.</h1>
+  <p>
+    PhishGuard implements the FYP
+    <em>Machine Learning-Based Intelligent Phishing and Scam Detection System</em>.
+    It combines URL lexical features with NLP cue counts, compares several classifiers,
+    and exposes a browser form for email, SMS, website URLs, and chat text.
+  </p>
+
+  <h2>What is included</h2>
+  <ul>
+    <li>Prototype labelled corpus (see <code>data/DATASET.md</code>)</li>
+    <li>URL features: length, host, IP-in-URL, shorteners, suspicious TLDs, brand impersonation</li>
+    <li>NLP cues: urgency, credentials, money language, obfuscation</li>
+    <li>Logistic Regression, Naive Bayes, Decision Tree, Random Forest, SVM, KNN, XGBoost</li>
+    <li>Explainability via SHAP or model importances</li>
+    <li>Flask interface with Safe / Suspicious / Phishing output</li>
+  </ul>
+
+  <h2>What is not included</h2>
+  <ul>
+    <li>Live mail-server or SMS-gateway blocking</li>
+    <li>A guarantee against previously unseen campaigns</li>
+    <li>Legal takedown or threat-intel feeds</li>
+    <li>Replacement for browser Safe Browsing or enterprise mail filters</li>
+  </ul>
+
+  {% if metrics %}
+    <p>Trained on {{ metrics.train_size }} records, evaluated on {{ metrics.test_size }} held-out records.</p>
+  {% endif %}
+</article>
+{% endblock %}

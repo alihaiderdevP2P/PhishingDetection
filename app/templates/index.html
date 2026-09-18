@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Scan · PhishGuard{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="kicker">Email · SMS · URL · Message text</p>
+    <h1>Check a link or message for phishing and scam cues.</h1>
+    <p>
+      Paste an email, SMS, chat message, or website URL. The prototype extracts URL structure
+      features and NLP cues, then scores the input with the best model from the training pipeline.
+    </p>
+  </div>
+  {% if metrics %}
+  <aside class="stat-card">
+    <p>Selected model</p>
+    <h2>{{ metrics.best_model }}</h2>
+    <dl>
+      <div><dt>Rows</dt><dd>{{ metrics.dataset_rows }}</dd></div>
+      <div><dt>Phish recall</dt><dd>{{ '%.2f'|format(metrics.comparison[0].test_phishing_recall) }}</dd></div>
+      <div><dt>Macro F1</dt><dd>{{ '%.2f'|format(metrics.comparison[0].test_macro_f1) }}</dd></div>
+    </dl>
+  </aside>
+  {% endif %}
+</section>
+
+{% if not models_ready %}
+  <div class="flash">Models have not been trained yet. From the project folder run <code>python run_train.py</code>.</div>
+{% endif %}
+
+<form class="scan-form" method="post" action="{{ url_for('predict') }}" id="scan-form">
+  <fieldset>
+    <legend>Channel</legend>
+    <div class="channel-row">
+      <label><input type="radio" name="channel" value="email" checked> Email</label>
+      <label><input type="radio" name="channel" value="sms"> SMS</label>
+      <label><input type="radio" name="channel" value="url"> Website URL</label>
+      <label><input type="radio" name="channel" value="chat"> Message text</label>
+    </div>
+  </fieldset>
+
+  <label>
+    <span>Message body</span>
+    <textarea name="text" id="text-input" rows="6" placeholder="Paste the email, SMS, or chat text…"></textarea>
+  </label>
+
+  <label>
+    <span>Website URL (optional if the text already contains a link)</span>
+    <input type="text" name="url" id="url-input" placeholder="https://example.com/login">
+  </label>
+
+  <div class="form-actions">
+    <button type="submit" class="primary" {% if not models_ready %}disabled{% endif %}>Classify content</button>
+    <button type="button" class="ghost" data-sample="safe">Load safe sample</button>
+    <button type="button" class="ghost" data-sample="suspicious">Load suspicious sample</button>
+    <button type="button" class="ghost danger" data-sample="phishing">Load phishing sample</button>
+  </div>
+</form>
+<script type="application/json" id="sample-data">{{ samples | tojson }}</script>
+{% endblock %}
